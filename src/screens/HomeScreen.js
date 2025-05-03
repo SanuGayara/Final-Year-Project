@@ -19,7 +19,7 @@ const HomeScreen = ({ navigation }) => {
       <CustomButton title="Profile" onPress={() => navigation.navigate('ProfileScreen')} />
       <CustomButton title="Appointment Schedule" onPress={() => navigation.navigate('AppointmentScreen')} />
       <CustomButton title="Patient Records" onPress={() => navigation.navigate('PatientScreen')} />
-      <CustomButton title="AI Chatbot" onPress={() => navigation.navigate('AIScreen')} />
+      <CustomButton title="AI Vet" onPress={() => navigation.navigate('AIScreen')} />
       <CustomButton title="Emergency Contact" onPress={() => navigation.navigate('EmergencyScreen')} />
 
       </View>

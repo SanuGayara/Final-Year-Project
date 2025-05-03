@@ -1,18 +1,45 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [secureText, setSecureText] = useState(true);
 
-  const handleLogin = () => {
-    console.log('Email:', email);
-    console.log('Password:', password);
+  const handleLogin = async () => {
+    if (!email || !password) {
+      alert("Please fill in both fields");
+      return;
+    }
 
-    navigation.navigate('TabScreen2');
+    try {
+      const response = await fetch('http://192.168.8.175/api/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ email, password })
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.token) {
+        await AsyncStorage.setItem('token', data.token);
+        await AsyncStorage.setItem('user', JSON.stringify(data.user));
+
+        console.log("Login successful!");
+        navigation.navigate('TabScreen2');
+      } else {
+        alert(data.message || "Login failed");
+      }
+    } catch (error) {
+      console.error("Login error:", error);
+      alert("Something went wrong. Please try again.");
+    }
   };
+
 
   return (
     <View style={styles.container}>

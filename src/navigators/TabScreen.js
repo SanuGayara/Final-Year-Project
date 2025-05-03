@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from '../screens/HomeScreen';
 import NotificationScreen from '../screens/NotificationScreen';
-import SearchScreen from '../screens/SearchScreen';
-import MessageScreen from '../screens/MessageScreen';
+import VetProfileScreen from '../screens/VetProfileScreen';
+import MessageScreen from '../screens/AIScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -39,17 +39,17 @@ const TabsScreen = () => {
         }}
       />
       <Tab.Screen
-        name="Search"
-        component={SearchScreen} // Replace with actual component
+        name="VetProfile"
+        component={VetProfileScreen} // Replace with actual component
         options={{
-          tabBarIcon: ({ color, size }) => <Icon name="search" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Icon name="user" size={size} color={color} />,
         }}
       />
       <Tab.Screen
-        name="Messages"
+        name="AI Chatbot"
         component={MessageScreen} // Replace with actual component
         options={{
-          tabBarIcon: ({ color, size }) => <Icon name="envelope" size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Icon name="comments" size={size} color={color} />,
         }}
       />
     </Tab.Navigator>

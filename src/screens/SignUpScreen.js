@@ -7,19 +7,47 @@ const SignUpScreen = ({ navigation }) => {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
 
-  const handleSignUp = () => {
-    if (password !== confirmPassword) {
-      alert('Passwords do not match!');
-      return;
-    }
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Password:', password);
+    const handleSignUp = async () => {
+        if (!name || !email || !password || !confirmPassword) {
+            alert("Please fill in all fields");
+            return;
+        }
 
-    navigation.navigate('LoginScreen');
-  };
+        if (password !== confirmPassword) {
+            alert('Passwords do not match!');
+            return;
+        }
 
-  return (
+        try {
+            const response = await fetch("http://192.168.8.175/api/auth/register", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    fullName: name,
+                    email: email,
+                    password: password,
+                    type: 2, // Always customer
+                }),
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Registration successful!");
+                navigation.navigate("LoginScreen");
+            } else {
+                alert(data.message || "Registration failed");
+            }
+        } catch (err) {
+            console.error("Sign-up error:", err);
+            alert("An error occurred. Please try again.");
+        }
+    };
+
+
+    return (
     <View style={styles.container}>
       <View style={styles.formContainer}>
         <View style={styles.formTitleContainer}>

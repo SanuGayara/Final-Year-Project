@@ -3,8 +3,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import HomeScreen from '../screens/HomeScreen';
 import NotificationScreen from '../screens/NotificationScreen';
-import SearchScreen from '../screens/SearchScreen'; 
-import MessageScreen from '../screens/MessageScreen';
+import VetProfileScreen from '../screens/VetProfileScreen'; 
+import AIScreen from '../screens/AIScreen';
 
 
 
@@ -29,31 +29,31 @@ const Tab = createBottomTabNavigator();
     >       
        <Tab.Screen        
        name="Home"         
-       component={HomeScreen} // Replace with actual component         
+       component={HomeScreen}          
        options={{          
          tabBarIcon: ({ color, size }) => <Icon name="home" size={size} color={color} />,
        }}      
    />      
        <Tab.Screen
         name="Notifications"         
-        component={NotificationScreen} // Replace with actual component         
+        component={NotificationScreen}         
         options={{           
           tabBarIcon: ({ color, size }) => <Icon name="bell" size={size} color={color} />,
        }}       
     />       
     
        <Tab.Screen         
-       name="Search"        
-       component={SearchScreen} // Replace with actual component        
+       name="Vet Profile"        
+       component={VetProfileScreen}        
        options={{           
-        tabBarIcon: ({ color, size }) => <Icon name="search" size={size} color={color} />,
+        tabBarIcon: ({ color, size }) => <Icon name="user" size={size} color={color} />,
        }}       
     />       
        <Tab.Screen         
-       name="Messages"         
-       component={MessageScreen} // Replace with actual component         
+       name="AI Vet"         
+       component={AIScreen}          
        options={{           
-        tabBarIcon: ({ color, size }) => <Icon name="envelope" size={size} color={color} />,
+        tabBarIcon: ({ color, size }) => <Icon name="comments" size={size} color={color} />,
        }}      
     /> 
         
